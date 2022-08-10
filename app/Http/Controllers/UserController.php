@@ -26,7 +26,7 @@ class UserController extends Controller
         ]
          );
         if($validator->fails()){
-            return response()->json($validator->errors());
+            return response()->json($validator->errors(),422);
         }
         
         if($req->hasfile('file')){
@@ -65,7 +65,7 @@ class UserController extends Controller
         ]
          );
         if($validator->fails()){
-            return response()->json($validator->errors());
+            return response()->json($validator->errors(),422);
         }
         if($req->hasfile('file')){
             $orgName = time().'_'.$req->file->getClientOriginalName();
