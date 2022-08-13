@@ -46,8 +46,11 @@ class PharmacyController extends Controller
         $pharmacy->phone_no=$req->phone_no;
         $pharmacy->update();
 
-        return response()->json(["msg"=>"Update successfull",
-    "data"=>$pharmacy]);
+        return response()->json(
+            [
+                "msg"=>"Update successfull",
+                "data"=>$pharmacy
+            ]);
     }  
     function deletePharmacy($id){
         $pharmacy=Pharmacy::where('id',$id)->first();
