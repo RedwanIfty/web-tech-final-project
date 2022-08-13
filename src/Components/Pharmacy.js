@@ -12,12 +12,12 @@ const Pharmacy=()=>{
         const data={name:name,address:address,phone_no:phone_no};
         axiosConfig.post("add/pharmacy",data).
         then((succ)=>{
-            debugger
+            //debugger
             setMsg(succ.data.msg);
 
            // window.location.href="/list";
         },(err)=>{
-            debugger;
+            //debugger;
             setErrs(err.response.data);
         })
     }

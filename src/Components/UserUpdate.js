@@ -1,8 +1,8 @@
 import {useParams} from 'react-router-dom';
-import {useState,useEffect}  from 'react';
+import {useState}  from 'react';
 import axiosConfig from './axiosConfig';
 const UserUpdate=()=>{
-    const{id,username}=useParams();
+    const{id}=useParams();
     const[name,setName]=useState("");
     const[mfile,setFile] = useState(null);
     const[type,setType]=useState("");
@@ -16,11 +16,11 @@ const UserUpdate=()=>{
         data.append("type",type);
         axiosConfig.post("user/update/"+id,data).then((rsp)=>
         {
-            debugger;
+            //debugger;
            setMsg(rsp.data.msg); 
         },
         (er)=>{
-            debugger;
+            //debugger;
             setErrs(er.response.data);
         });
         //alert("Register");

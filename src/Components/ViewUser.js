@@ -38,7 +38,7 @@ const ViewUser=()=>{
                     <td >{v.type}</td>
                     <td><img src={`http://localhost:8000/storage/pro_pics/${v.pro_pic}`} width={100} height={100}/></td>
                     <td>{
-                        type===v.type ? " ":<Link to={`/user/update/${v.id}/${v.name}`}>Update</Link>}||
+                        type===v.type ? " ":<Link to={`/user/update/${v.id}/${v.name}`}>Update||</Link>}
                         {type===v.type ? " ":<Link to={`/user/delete/${v.id}`}>Delete</Link>}
                     </td>
                 </tr>

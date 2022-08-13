@@ -26,12 +26,12 @@ const Register=()=>{
         data.append("type",type);
         axiosConfig.post("user/register",data).then((rsp)=>
         {
-            debugger;
+         //   debugger;
            setMsg(rsp.data.msg); 
-           console.log(rsp.data.name);
+           //console.log(rsp.data.name);
         },
         (er)=>{
-            debugger;
+            //debugger;
             setErrs(er.response.data);
         });
         //alert("Register");
@@ -47,9 +47,9 @@ const Register=()=>{
                 Confirm Password:<input value={conf_password} onChange={(e)=>{setConf_password(e.target.value)}} type="password"/><span>{errs.conf_password? errs.conf_password[0]:''}</span><br></br><br></br>
                 Upload Image:<input type="file" onChange={(e)=>{setFile(e.target.files[0])}} /><span>{errs.file? errs.file[0]:''}</span><br></br><br></br>
                 Type: 
-                <input type="radio" value="Patient" name={type} onChange={e=>setType(e.target.value)}/>Patient
-                <input type="radio" value="Doctor" name={type} onChange={e=>setType(e.target.value)}/>Doctor
-                <input type="radio" value="Employee" name={type} onChange={e=>setType(e.target.value)}/>Employee <span>{errs.type? errs.type[0]:''}</span>
+                Patient<input type="radio" value="Patient" name={type} onChange={e=>setType(e.target.value)}/>
+                Doctor<input type="radio" value="Doctor" name={type} onChange={e=>setType(e.target.value)}/>
+                Employee<input type="radio" value="Employee" name={type} onChange={e=>setType(e.target.value)}/> <span>{errs.type? errs.type[0]:''}</span>
                 <br/><br></br>
                 <input className={'btn btn-success'} type="submit" value="Register"/><br></br>
                 

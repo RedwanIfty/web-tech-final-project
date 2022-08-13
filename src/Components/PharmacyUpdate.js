@@ -13,12 +13,12 @@ const PharmacyUpdate=()=>{
         const data={name:name,address:address,phone_no:phone_no};
         axiosConfig.post("pharmacy/update/"+id,data).
         then((succ)=>{
-            debugger
+            //debugger
             setMsg(succ.data.msg);
 
            // window.location.href="/list";
         },(err)=>{
-            debugger;
+          //  debugger;
             setErrs(err.response.data);
         })
     }

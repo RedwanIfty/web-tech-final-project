@@ -13,12 +13,12 @@ const DrugsUpdate=()=>{
         const data={price:price,available:available};
         axiosConfig.post("drugs/update/"+id,data).
         then((succ)=>{
-            debugger
+            //debugger
             setMsg(succ.data.msg);
 
            // window.location.href="/list";
         },(err)=>{
-            debugger;
+            //debugger;
             setErrs(err.response.data);
         })
     }
