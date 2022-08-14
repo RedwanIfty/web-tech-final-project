@@ -3,7 +3,9 @@ import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Drugs from './Drugs';
 import DrugsDelete from './DrugsDelete';
 import DrugsUpdate from './DrugsUpdate';
+import HomeMenu from './HomeMenu';
 import LeftMenu from './LeftMenu';
+import Logout from './Logout';
 import Pharmacy from './Pharmacy';
 import PharmacyDelete from './PharmacyDelete';
 import PharmacyUpdate from './PharmacyUpdate';
@@ -13,12 +15,13 @@ import UserUpdate from './UserUpdate';
 import ViewDrugs from './ViewDrugs';
 import ViewPharmacy from './ViewPharmacy';
 import ViewUser from './ViewUser';
+import Login from './Login';
 const Main = ()=>{
     return (
         <div>
              <BrowserRouter>
-               <LeftMenu/>
-             
+               {/* <LeftMenu/> */}
+                {localStorage.getItem("_authToken") ? <LeftMenu/>:<HomeMenu/>}
                 <Routes>
                     <Route path="/register" element={<Register/>} />
                     <Route path="/drugs" element={<Drugs/>} />
@@ -32,7 +35,8 @@ const Main = ()=>{
                     <Route path="/view/drugs" element={<ViewDrugs/>}/>
                     <Route path='/drugs/delete/:id' element={<DrugsDelete/>}/>
                     <Route path='/drugs/update/:id/:name' element={<DrugsUpdate/>}/>
-                        
+                    <Route path='/logout' element={<Logout/>}/>
+                    <Route path='/login' element={<Login/>}/>
                 </Routes>
             </BrowserRouter> 
             

@@ -4,16 +4,19 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use((config)=>{
-    config.headers.common["Authorization"] = localStorage.getItem('_authToken');
+    config.headers.common["AuthorizationAdmin"] = localStorage.getItem('_authToken');
+    debugger
+    config.headers.common["Authorization"]=localStorage.getItem('user');
+    debugger
     return config;
 },(err)=>{});
 
 instance.interceptors.response.use((rsp)=>{
     return rsp;
 },(err)=>{
-    if(err.response.status === 401){
+    if(err.response.status == 401){
         window.location.href="/";
     }
     return Promise.reject(err);
 });
-export default instance; 
+export default instance;

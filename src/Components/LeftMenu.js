@@ -8,7 +8,8 @@ const LeftMenu=()=>{
              <MenuItem url="/pharmacy" value="Pharmacy"/>||
              <MenuItem url="/view/user" value="View User"/>||
              <MenuItem url="/view/pharmacy" value="View Pharmacy"/>||
-             <MenuItem url="/view/drugs" value="View Drugs"/>           
+             <MenuItem url="/view/drugs" value="View Drugs"/>||
+             <MenuItem url="/logout" value="Log out"/>           
         </div>
     )
 }

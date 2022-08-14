@@ -1,10 +1,13 @@
-import {useState,useEffect} from 'react';
+import {useState,useEffect,useRef} from 'react';
 import axiosConfig from './axiosConfig';
 import {Link} from 'react-router-dom';
+import { useDownloadExcel } from 'react-export-table-to-excel';
 const ViewDrugs=()=>
 {
     var index=1;
+    const tableRef = useRef(null);
     const[view,setView]=useState([]);
+    var total=0;
     useEffect(()=>{
         axiosConfig.get("drugs").then((rsp)=>{
         setView(rsp.data);
@@ -14,11 +17,19 @@ const ViewDrugs=()=>
         })
 
     },[]); 
+    const { onDownload } = useDownloadExcel({
+        currentTableRef: tableRef.current,
+        filename: 'Users table',
+        sheet: 'Users'
+    })
+
     return(
         <div>
-             <table style={{border: "3px solid rgb(0, 0, 0)"}}>
+            <button onClick={onDownload}> Export excel </button>
+             <table border="1" ref={tableRef}>
                <thead>
                 <tr>
+                    <th>SL</th>
                     <th>Id</th>
                     <th>Name</th>
                     <th>Formula</th>
@@ -28,9 +39,10 @@ const ViewDrugs=()=>
                     <th>Action</th>
                 </tr>
                </thead> 
+               <tbody>
                     {view.map(v=>(
-                <tbody key={index++}>        
-                <tr>
+                <tr key={index++}>
+                    <td>{index}</td>
                     <td >{v.id}</td>
                     <td >{v.name}</td>
                     <td >{v.formula}</td>
@@ -40,9 +52,17 @@ const ViewDrugs=()=>
                     <td><Link to={`/drugs/update/${v.id}/${v.name}`}>Update</Link>
                     ||<Link to={`/drugs/delete/${v.id}`}>Delete</Link></td>
                 </tr>
-            </tbody>
                     ))}
-            </table> 
+                    <tr>
+                        <th colSpan={6}>Total</th>
+                        {view.map(
+                v=>{
+                    total=total+(v.price*v.available)
+                })} 
+                        <td>{total}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     )
 }

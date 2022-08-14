@@ -11,10 +11,20 @@ const Register=()=>{
     const[type,setType]=useState("");
     const [msg,setMsg] = useState("");
     const [errs,setErrs] = useState([]);
+    const[view,setView]=useState([]);
     const PostStyle={
         padding: "10px",
         textalign:"center"
     }
+    // useEffect(()=>{
+    //     axiosConfig.get("pharmacy").then((rsp)=>{
+    //     setView(rsp.data);
+    //     console.log(rsp.data);
+    //     },(er)=>{
+
+    //     })
+
+    // },[]);
     const upload=(event)=>{
         event.preventDefault();
         var data=new FormData();
@@ -55,7 +65,12 @@ const Register=()=>{
                 
             </fieldset>
         </form>
+        {/* <select>
+        {view.map(v=>(
+                <option value={v.name}>{v.name}</option>            ))}
+        </select> */}
         <h4>{msg}</h4>
+        {name}
     </div>
     )
 }
