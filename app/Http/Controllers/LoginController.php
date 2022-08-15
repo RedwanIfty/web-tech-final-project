@@ -32,7 +32,7 @@ class LoginController extends Controller
             $token->save();
             return response()->json($token);
         }
-        return response()->json(["msg"=>"Username password invalid"],422);
+        return response()->json(["msg"=>"Email or password is invalid"],422);
     }
     function logout(Request $req){
         $tk = $req->token;

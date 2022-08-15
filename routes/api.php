@@ -24,6 +24,7 @@ Route::post('/user/register',[UserController::class,'register']);
 Route::get('user',[UserController::class,'getUser'])->middleware('loggedadmin');
 Route::post('user/update/{id}',[UserController::class,'updateUser'])->middleware('loggedadmin');
 Route::post('user/delete/{id}',[UserController::class,'deleteUser'])->middleware('loggedadmin');
+Route::get('user-search/{key}',[UserController::class,'usersearch']);//->middleware('loggedadmin');
 
 Route::get('pharmacy',[PharmacyController::class,'getPharmacy'])->middleware('loggedadmin');
 Route::post('add/pharmacy',[PharmacyController::class,'addPharmacy'])->middleware('loggedadmin');

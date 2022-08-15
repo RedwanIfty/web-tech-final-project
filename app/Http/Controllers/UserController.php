@@ -95,4 +95,10 @@ class UserController extends Controller
             ]
             );
     }
+    function usersearch($key){
+        $user=Users::where('name','LIKE','%'.$key.'%')
+        ->whereNull('status')->
+        get();
+        return $user;//response()->json($user);
+    }
 }
