@@ -16,6 +16,7 @@ import ViewDrugs from './ViewDrugs';
 import ViewPharmacy from './ViewPharmacy';
 import ViewUser from './ViewUser';
 import Login from './Login';
+// import Test from './Test';
 const Main = ()=>{
     return (
         <div>

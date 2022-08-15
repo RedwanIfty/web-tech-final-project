@@ -10,11 +10,12 @@ const Login =()=>{
         debugger
         axiosConfig.post('login',data).then(
             (succ)=>{
-                localStorage.setItem('_authToken',succ.data.tkey);
                 debugger
-                if(succ.data.Role==='Admin')
-                   { window.location.href="/view/user";}
-                if(succ.data.Role==='User')
+                if(succ.data.Role==='Admin'){
+                    localStorage.setItem('_authToken',succ.data.tkey);
+                    window.location.href="/view/user";
+                }
+                if(succ.data.Role==='Employee')
                     {alert('user cannot access')}
                 
             },

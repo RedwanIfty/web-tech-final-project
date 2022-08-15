@@ -1,7 +1,7 @@
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import {useState,useEffect} from 'react';
+import {useState} from 'react';
 import axiosConfig from './axiosConfig';
-import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
 const Register=()=>{
     const[name,setName]=useState("");
     const[email,setEmail]=useState("");
@@ -11,7 +11,6 @@ const Register=()=>{
     const[type,setType]=useState("");
     const [msg,setMsg] = useState("");
     const [errs,setErrs] = useState([]);
-    const[view,setView]=useState([]);
     const PostStyle={
         padding: "10px",
         textalign:"center"
@@ -51,7 +50,7 @@ const Register=()=>{
         <h1 style={PostStyle}>Register</h1>
         <form onSubmit={upload}>
             <fieldset>
-                Name:<input value={name} onChange={(e)=>{setName(e.target.value)}} type="text"/><span>{errs.name? errs.name[0]:''}</span><br></br><br></br>
+                Name:<input value={name} onChange={(e)=>{setName(e.target.value)}} type="text"/><span className="alert alert-danger" role="alert">{errs.name? errs.name[0]:''}</span><br></br><br></br>
                 Email:<input value={email} onChange={(e)=>{setEmail(e.target.value)}} type="text"/><span>{errs.email? errs.email[0]:''}</span><br></br><br></br>
                 Password:<input value={password} onChange={(e)=>{setPassword(e.target.value)}} type="password"/><span>{errs.password? errs.password[0]:''}</span><br></br><br></br>
                 Confirm Password:<input value={conf_password} onChange={(e)=>{setConf_password(e.target.value)}} type="password"/><span>{errs.conf_password? errs.conf_password[0]:''}</span><br></br><br></br>

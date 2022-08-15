@@ -14,9 +14,12 @@ const Logout=()=>{
     }
         axiosConfig.post("logout",data).
         then((succ)=>{
+            if(localStorage.getItem('_authToken')){
             debugger
+            
             localStorage.removeItem('_authToken');
                 window.location.href="/";
+            }
         },(err)=>{ 
            
         })
