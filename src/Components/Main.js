@@ -22,7 +22,9 @@ const Main = ()=>{
         <div>
              <BrowserRouter>
                {/* <LeftMenu/> */}
-                {localStorage.getItem("_authToken") ? <LeftMenu/>:<HomeMenu/>}
+               {localStorage.getItem("_authToken")!=null && <LeftMenu/>}
+               {localStorage.getItem('_authToken')===null && <HomeMenu/>}
+                
                 <Routes>
                     <Route path="/register" element={<Register/>} />
                     <Route path="/drugs" element={<Drugs/>} />

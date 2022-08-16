@@ -50,15 +50,15 @@ const Register=()=>{
         <h1 style={PostStyle}>Register</h1>
         <form onSubmit={upload}>
             <fieldset>
-                Name:<input value={name} onChange={(e)=>{setName(e.target.value)}} type="text"/><span className="alert alert-danger" role="alert">{errs.name? errs.name[0]:''}</span><br></br><br></br>
-                Email:<input value={email} onChange={(e)=>{setEmail(e.target.value)}} type="text"/><span>{errs.email? errs.email[0]:''}</span><br></br><br></br>
-                Password:<input value={password} onChange={(e)=>{setPassword(e.target.value)}} type="password"/><span>{errs.password? errs.password[0]:''}</span><br></br><br></br>
-                Confirm Password:<input value={conf_password} onChange={(e)=>{setConf_password(e.target.value)}} type="password"/><span>{errs.conf_password? errs.conf_password[0]:''}</span><br></br><br></br>
-                Upload Image:<input type="file" onChange={(e)=>{setFile(e.target.files[0])}} /><span>{errs.file? errs.file[0]:''}</span><br></br><br></br>
+                Name:<input value={name} onChange={(e)=>{setName(e.target.value)}} type="text"/><span className={errs.name && "alert alert-danger"} role="alert">{errs.name? errs.name[0]:''}</span><br></br><br></br>
+                Email:<input value={email} onChange={(e)=>{setEmail(e.target.value)}} type="text"/><span className={errs.email && "alert alert-danger"} role="alert">{errs.email? errs.email[0]:''}</span><br></br><br></br>
+                Password:<input value={password} onChange={(e)=>{setPassword(e.target.value)}} type="password"/><span className={errs.password && "alert alert-danger"} role="alert"> {errs.password? errs.password[0]:''}</span><br></br><br></br>
+                Confirm Password:<input value={conf_password} onChange={(e)=>{setConf_password(e.target.value)}} type="password"/><span className={errs.conf_password && "alert alert-danger"} role="alert">{errs.conf_password? errs.conf_password[0]:''}</span><br></br><br></br>
+                Upload Image:<input type="file" onChange={(e)=>{setFile(e.target.files[0])}} /><span className={errs.file && "alert alert-danger"} role="alert">{errs.file? errs.file[0]:''}</span><br></br><br></br>
                 Type: 
                 Patient<input type="radio" value="Patient" name={type} onChange={e=>setType(e.target.value)}/>
                 Doctor<input type="radio" value="Doctor" name={type} onChange={e=>setType(e.target.value)}/>
-                Employee<input type="radio" value="Employee" name={type} onChange={e=>setType(e.target.value)}/> <span>{errs.type? errs.type[0]:''}</span>
+                Employee<input type="radio" value="Employee" name={type} onChange={e=>setType(e.target.value)}/> <span className={errs.type && "alert alert-danger"} role="alert">{errs.type? errs.type[0]:''}</span>
                 <br/><br></br>
                 <input className={'btn btn-success'} type="submit" value="Register"/><br></br>
                 
