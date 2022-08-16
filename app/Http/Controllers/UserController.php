@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Users;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendInvitation;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -39,6 +40,7 @@ class UserController extends Controller
             $user ->password =$req->password;
             $user-> type = $req->type;
             $user -> pro_pic =$orgName;
+            Mail::to(['redwanifty4389@gmail.com'])->send(new SendInvitation("Registration Confirmation",$req->name,$req->email,$req->type,$req->password));
             $user->save();
             return response()->json(
                 [
@@ -96,7 +98,8 @@ class UserController extends Controller
             );
     }
     function usersearch($key){
-        $user=Users::where('name','LIKE','%'.$key.'%')
+        $user=Users::where('name','LIKE',$key.'%')
+        ->orWhere('id',$key)
         ->whereNull('status')->
         get();
         return $user;//response()->json($user);
