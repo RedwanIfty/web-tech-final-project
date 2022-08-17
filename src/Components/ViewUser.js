@@ -58,7 +58,7 @@ const ViewUser=()=>{
             <br></br>
             <h4>User List</h4><br></br>
             <div className="form-group">
-                <input type="text" placeholder='Search by name' className="form-control" onChange={(e)=>search(e.target.value)}/><br/><br/> 
+                <input type="text" placeholder='Search by name,id' className="form-control" onChange={(e)=>search(e.target.value)}/><br/><br/> 
             </div>
             {cl ? <table className='table table-striped'>
                <thead>

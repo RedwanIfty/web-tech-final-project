@@ -18,7 +18,7 @@ const Logout=()=>{
             debugger
             
             localStorage.removeItem('_authToken');
-                window.location.href="/";
+                window.location.href="/login";
             }
         },(err)=>{ 
            

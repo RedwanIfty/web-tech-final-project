@@ -1,4 +1,4 @@
-import Form from '../../node_modules/react-bootstrap/Form';
+import Form from 'react-bootstrap/Form';
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 const Test=()=> {
   return (
@@ -14,4 +14,4 @@ const Test=()=> {
     </Form>
   );
 }
-export default Test;
+export default test;

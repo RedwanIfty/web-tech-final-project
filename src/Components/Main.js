@@ -16,6 +16,7 @@ import ViewDrugs from './ViewDrugs';
 import ViewPharmacy from './ViewPharmacy';
 import ViewUser from './ViewUser';
 import Login from './Login';
+import PharmacyDrugs from './PharmacyDrugs';
 // import Test from './Test';
 const Main = ()=>{
     return (
@@ -38,6 +39,7 @@ const Main = ()=>{
                     <Route path="/view/drugs" element={<ViewDrugs/>}/>
                     <Route path='/drugs/delete/:id' element={<DrugsDelete/>}/>
                     <Route path='/drugs/update/:id/:name' element={<DrugsUpdate/>}/>
+                    <Route path='/pharmacy/drugs/:id/:name' element={<PharmacyDrugs/>}/>
                     <Route path='/logout' element={<Logout/>}/>
                     <Route path='/login' element={<Login/>}/>
                 </Routes>
