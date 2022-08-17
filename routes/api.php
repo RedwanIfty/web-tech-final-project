@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PharmacyController;
 use App\Http\Controllers\DrugController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PharmacyDrugsController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -38,3 +39,6 @@ Route::post('drugs/delete/{id}',[DrugController::class,'deleteDrugs'])->middlewa
 
 Route::post('/login',[LoginController::class,'login']);
 Route::post('/logout',[LoginController::class,'logout']);
+
+Route::get('/pharmacy/drugs/{id}',[PharmacyDrugsController::class,'pharmacyDrugs'])->middleware('loggedadmin');
+Route::post('/pharmacy/drugs/{id}',[PharmacyDrugsController::class,'pharmacyDrugsAdd']);//->middleware('loggedadmin');;
