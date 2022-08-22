@@ -23,7 +23,6 @@ class PharmacyDrugsController extends Controller
         ],
         [
             "name.required"=>"Please provide drugs name",
-            "name.unique"=>"Already exists"
         ]);
         if($validator->fails()){
             return response()->json($validator->errors(),422);
@@ -39,8 +38,16 @@ class PharmacyDrugsController extends Controller
     }
         //return response()->json($d->id);
        // $pd=new PharmacyDrugs();
+       $drugadd=Drug::where('name',$req->name)->first();
+       $drugadd->available;
+       if($drugadd->available<=$req->available){
+        return response()->json([
+            "msg"=>"$req->available drugs not available",
+           ]);
+       }
+       $drugadd->id;
        $pharmacydrugs=new PharmacyDrugs();
-       $pharmacydrugs->drug_id=$d->id;
+       $pharmacydrugs->drug_id=$drugadd->id;
        $pharmacydrugs->pharmacy_id=$id;
        $pharmacydrugs->save();
        return response()->json([

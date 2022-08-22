@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Users;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendInvitation;
+use App\Mail\ResetPassMail;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -102,6 +104,59 @@ class UserController extends Controller
         ->orWhere('id',$key)
         ->whereNull('status')->
         get();
-        return $user;//response()->json($user);
+        return response()->json($user);
+    }
+    function userDetails($id){
+        $user=Users::where('id',$id)->first();
+        return response()->json($user);
+    }
+    function changepass(Request $req){
+        $validator = Validator::make($req->all(),[
+            "email"=>"required|email|exists:user,email",
+            "current_password"=>"required",
+            "password"=>"required|min:8|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}+$/i",
+            "conf_password"=>"required|min:8|same:password",
+        ],
+        [
+            "password.regex"=>"Password must contain upper case,lower case,number and special characters",
+            "conf_password.required"=>"Confirm your password",
+            "conf_password.same"=>"Confirm password and password don't match"
+        ]
+         );
+        if($validator->fails()){
+            return response()->json($validator->errors(),422);
+        }
+        $user=Users::where('email',$req->email)->first();
+        if($user->password != $req->current_password){
+            return response()->json(["msg"=>"Password doesn't match with current password"]);
+        }
+        $user->password=$req->password;
+        $user->update();
+        return response()->json(
+            ["msg"=>"Password updated successfull",
+            "data"=>$user]
+        );
+    }
+    function forgetpass(Request $req){
+        $validator = Validator::make($req->all(),[
+            "email"=>"required|email|exists:user,email"
+            ],
+        [
+            "email.exists"=>"Email does not exists"
+        ]
+         );
+        if($validator->fails()){
+            return response()->json($validator->errors(),422);
+        }
+        $str=Str::random(6);
+        $user=Users::where('email',$req->email)->first();
+        $user->password=$str;
+        Mail::to(['redwanifty4389@gmail.com'])->send(new ResetPassMail("Reset Password",$req->email,$str));
+        $user->update();
+        return response()->json(
+            [
+                "msg"=>"New password send to your email",
+                "data"=>$user
+            ]);
     }
 }

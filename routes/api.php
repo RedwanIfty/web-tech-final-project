@@ -7,6 +7,7 @@ use App\Http\Controllers\PharmacyController;
 use App\Http\Controllers\DrugController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PharmacyDrugsController;
+use App\Http\Controllers\EmployeeController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,7 +26,10 @@ Route::post('/user/register',[UserController::class,'register']);
 Route::get('user',[UserController::class,'getUser'])->middleware('loggedadmin');
 Route::post('user/update/{id}',[UserController::class,'updateUser'])->middleware('loggedadmin');
 Route::post('user/delete/{id}',[UserController::class,'deleteUser'])->middleware('loggedadmin');
-Route::get('user-search/{key}',[UserController::class,'usersearch']);//->middleware('loggedadmin');
+Route::get('user-search/{key}',[UserController::class,'usersearch'])->middleware('loggedadmin');
+Route::get('user/details/{id}',[UserController::class,'userDetails'])->middleware('loggedadmin');
+Route::post('/changepass',[UserController::class,'changepass'])->middleware('loggedadmin');
+Route::post('/forgetpass',[UserController::class,'forgetpass']);
 
 Route::get('pharmacy',[PharmacyController::class,'getPharmacy'])->middleware('loggedadmin');
 Route::post('add/pharmacy',[PharmacyController::class,'addPharmacy'])->middleware('loggedadmin');
@@ -36,9 +40,12 @@ Route::get('drugs',[DrugController::class,'getDrugs'])->middleware('loggedadmin'
 Route::post('add/drugs',[DrugController::class,'addDrugs'])->middleware('loggedadmin');
 Route::post('drugs/update/{id}',[DrugController::class,'updateDrugs'])->middleware('loggedadmin');
 Route::post('drugs/delete/{id}',[DrugController::class,'deleteDrugs'])->middleware('loggedadmin');
+Route::get('drugs-search/{key}',[DrugController::class,'searchDrugs']);//->middleware('loggedadmin');
 
 Route::post('/login',[LoginController::class,'login']);
 Route::post('/logout',[LoginController::class,'logout']);
 
 Route::get('/pharmacy/drugs/{id}',[PharmacyDrugsController::class,'pharmacyDrugs'])->middleware('loggedadmin');
-Route::post('/pharmacy/drugs/{id}',[PharmacyDrugsController::class,'pharmacyDrugsAdd']);//->middleware('loggedadmin');;
+Route::post('/pharmacy/drugs/{id}',[PharmacyDrugsController::class,'pharmacyDrugsAdd'])->middleware('loggedadmin');
+
+Route::get('/employee/{id}',[EmployeeController::class,'employee'])->middleware('loggedemployee');

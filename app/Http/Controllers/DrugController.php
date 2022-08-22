@@ -67,4 +67,9 @@ class DrugController extends Controller
                 "data"=>$drugs
             ]);
     }
+    function searchDrugs($key){
+        $drugs=Drug::where('name','LIKE','%'.$key.'%')
+                    ->whereNull('status')->get();
+        return response()->json($drugs);
+    }
 }
