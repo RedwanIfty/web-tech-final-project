@@ -14,6 +14,7 @@ const Login =()=>{
                 debugger
                 if(succ.data.Role==='Admin'){
                     localStorage.setItem('_authToken',succ.data.tkey);
+                    localStorage.setItem('admin_id',succ.data.user_id);
                     window.location.href="/view/user";
                 }
                 if(succ.data.Role==='Employee')

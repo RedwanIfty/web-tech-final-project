@@ -1,6 +1,7 @@
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import {useState} from 'react';
 import axiosConfig from './axiosConfig';
+
 const ForgetPass=()=>{
     const[email,setEmail]=useState("");
     const [errs,setErrs] = useState([]);
@@ -29,7 +30,7 @@ const ForgetPass=()=>{
                     <input className={'btn btn-success'} type="submit" value="Submit"/><br></br>
                 </form>
             </div>
-            <div className="d-flex justify-content-center"><h6>{msg}</h6></div>
+            <div className="d-flex justify-content-center"><h6 className={msg && "alert alert-success"}>{msg}</h6></div>
         </div>
     )
 }

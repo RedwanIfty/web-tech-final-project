@@ -1,6 +1,7 @@
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import MenuItem from './MenuItem';
 const LeftMenu=()=>{
+    var id=localStorage.getItem('admin_id');
     return (
         <div>
             <ul>
@@ -24,6 +25,9 @@ const LeftMenu=()=>{
                 </li>
                 <li className='MenuItem'>
                     <MenuItem url="/changepass" value="Change Password"/>    
+                </li>    
+                <li className='MenuItem'>
+                    <MenuItem url={`changeProfilePic/${id}`} value="Change Picture"/>    
                 </li>    
                 <li className='MenuItem'>
                     <MenuItem url="/logout" value="Log out"/>    

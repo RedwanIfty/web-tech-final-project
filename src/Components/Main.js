@@ -21,6 +21,8 @@ import EmployeeDash from './EmployeeDash';
 import UserDetails from './UserDetails';
 import Changepass from './ChangePass';
 import ForgetPass from './ForgetPass';
+import ChangeProfilePic from './ChangeProfilePic';
+import Footer from './Footer';
 
 const Main = ()=>{
     return (
@@ -50,7 +52,9 @@ const Main = ()=>{
                     <Route path='/login' element={<Login/>}/>
                     <Route path='/changepass' element={<Changepass/>}/>
                     <Route path='/forgetpass' element={<ForgetPass/>}/>
+                    <Route path='/changeProfilePic/:id' element={<ChangeProfilePic/>}/>
                 </Routes>
+                <Footer/>
             </BrowserRouter> 
             
             

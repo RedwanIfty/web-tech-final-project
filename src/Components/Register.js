@@ -70,7 +70,6 @@ const Register=()=>{
                 <option value={v.name}>{v.name}</option>            ))}msg
         </select> */}
         <span className={msg && "alert alert-success"}>{msg}</span>
-        {name}
     </div>
     )
 }

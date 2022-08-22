@@ -1,6 +1,7 @@
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import {useState} from 'react';
 import axiosConfig from './axiosConfig';
+import HomeMenu from "./HomeMenu";
 const Changepass=()=>{
     const[email,setEmail]=useState("");
     const[current_password,setCurrentPassword]=useState("");
@@ -26,6 +27,7 @@ const Changepass=()=>{
         <div className='d-flex justify-content-center'>
             <h2>Change Password</h2>
         </div>
+
             <div className='d-flex justify-content-center'>       
                 <form onSubmit={handleSubmit}>
                     Email:<input value={email} onChange={(e)=>{setEmail(e.target.value)}} type="text"/><span className={errs.email && "alert alert-danger"} role="alert">{errs.email? errs.email[0]:''}</span><br></br><br></br>

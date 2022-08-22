@@ -30,7 +30,7 @@ const PharmacyDrugs=()=>{
         then((succ)=>{
            // debugger
             setMsg(succ.data.msg);
-
+            setCheck(true);
            // window.location.href="/list";
         },(err)=>{
            // debugger;
