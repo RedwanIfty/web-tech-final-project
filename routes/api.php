@@ -30,6 +30,7 @@ Route::get('user-search/{key}',[UserController::class,'usersearch'])->middleware
 Route::get('user/details/{id}',[UserController::class,'userDetails'])->middleware('loggedadmin');
 Route::post('/changepass',[UserController::class,'changepass'])->middleware('loggedadmin');
 Route::post('/forgetpass',[UserController::class,'forgetpass']);
+Route::post('/changeProfilePic/{id}',[UserController::class,'changeProfilePic'])->middleware('loggedadmin');
 
 Route::get('pharmacy',[PharmacyController::class,'getPharmacy'])->middleware('loggedadmin');
 Route::post('add/pharmacy',[PharmacyController::class,'addPharmacy'])->middleware('loggedadmin');
@@ -46,6 +47,7 @@ Route::post('/login',[LoginController::class,'login']);
 Route::post('/logout',[LoginController::class,'logout']);
 
 Route::get('/pharmacy/drugs/{id}',[PharmacyDrugsController::class,'pharmacyDrugs'])->middleware('loggedadmin');
+Route::get('/drugs/pharmacy/{id}',[PharmacyDrugsController::class,'drugsPharmacy']);
 Route::post('/pharmacy/drugs/{id}',[PharmacyDrugsController::class,'pharmacyDrugsAdd'])->middleware('loggedadmin');
 
 Route::get('/employee/{id}',[EmployeeController::class,'employee'])->middleware('loggedemployee');

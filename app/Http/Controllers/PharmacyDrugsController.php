@@ -14,6 +14,10 @@ class PharmacyDrugsController extends Controller
         $pd=Pharmacy::find($id)->drug;
         return response()->json($pd);
     }
+    function drugsPharmacy($id){
+        $dp=Drug::find($id)->pharmacy;
+        return response()->json($dp);        
+    }
     function pharmacyDrugsAdd(Request $req,$id){
         $validator = Validator::make($req->all(),[
             "name"=>"required",

@@ -159,4 +159,29 @@ class UserController extends Controller
                 "data"=>$user
             ]);
     }
+    function changeProfilePic(Request $req,$id){
+        $validator = Validator::make($req->all(),[
+                        "file"=>"required|mimes:jpg,png,jpeg|max:2048"
+        ]
+         );
+        if($validator->fails()){
+            return response()->json($validator->errors(),422);
+        }
+        if($req->hasfile('file')){
+            $orgName = time().'_'.$req->file->getClientOriginalName();
+            $req->file->storeAs('public/pro_pics',$orgName);
+            
+            $user=Users::where('id',$id)->first();
+            $user -> pro_pic =$orgName;
+            $user->update();
+            return response()->json(
+                [
+                    "msg"=>"Profile Picture Change Successfully",
+                    "data"=>$user        
+                ]
+            );
+        }
+        return response()->json(["msg"=>"Update failed"]);
+
+    }
 }
