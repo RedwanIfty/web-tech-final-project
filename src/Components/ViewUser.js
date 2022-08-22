@@ -54,7 +54,13 @@ const ViewUser=()=>{
         }
     }
     return(
+
         <div className='container'>
+        <select style={{float:'right'}}>
+            <option value="actual value 1">Display Text 1</option>
+            <option value="actual value 2">Display Text 2</option>
+            <option value="actual value 3">Display Text 3</option>
+        </select>
             <br></br>
             <h4>User List</h4><br></br>
             <div className="form-group">
@@ -75,7 +81,7 @@ const ViewUser=()=>{
                 <tbody key={index++}>        
                 <tr>
                     <td >{v.id}</td>
-                    <td >{v.name}</td>
+                    <td ><Link to={`/user/details/${v.id}`}>{v.name}</Link></td>
                     <td >{v.email}</td>
                     <td >{v.type}</td>
                     <td><img src={`http://localhost:8000/storage/pro_pics/${v.pro_pic}`} className='img-fluid rounded-circle' width={100} height={100} alt='img not found'/></td>
@@ -101,7 +107,7 @@ const ViewUser=()=>{
                 <tbody key={index++}>        
                 <tr>
                     <td >{d.id}</td>
-                    <td >{d.name}</td>
+                    <td ><Link to={`/user/details/${d.id}`}>{d.name}</Link></td>
                     <td >{d.email}</td>
                     <td >{d.type}</td>
                     <td><img src={`http://localhost:8000/storage/pro_pics/${d.pro_pic}`} className='img-fluid rounded-circle' width={100} height={75} alt='img not found'/></td>

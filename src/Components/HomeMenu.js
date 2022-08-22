@@ -1,10 +1,12 @@
 import MenuItem from "./MenuItem"
-
+import '../css/nav.css'
 const HomeMenu=()=>{
     return(
         <div>
-            <MenuItem url="/login" value="Login" />||
-            <MenuItem url="/register" value="Register"/>
+            <ul>
+                <li className="MenuItem"><MenuItem url="/login" value="Login" /></li>
+                <li className="MenuItem" id='active'><MenuItem url="/register" value="Register"/></li>
+            </ul>
         </div>
     )
 }

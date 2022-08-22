@@ -6,7 +6,7 @@ import _ from 'lodash';
 const pageSize=10
 const ViewPharmacy=()=>{
     const[view,setView]=useState([]);
-    const[paginateView,setpaginateView]=useState();
+    const[paginateView,setpaginateView]=useState([]);
     const[currentPage,setcurrentPage]=useState(1);
     const[cl,setCl]=useState(false);
     debugger
@@ -34,7 +34,7 @@ const ViewPharmacy=()=>{
     return(
         <div>
              <table className='table table-striped'>
-            <tbody>
+            <thead>
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
@@ -42,24 +42,24 @@ const ViewPharmacy=()=>{
                     <th>Phone no</th>
                     <th>Action</th>
                 </tr>
+            </thead>
                 {
-                    view.map((v,index)=>(
-            
-                <tr key={index}>
+                  paginateView.map((v,index)=>(
+            <tbody key={index}>
+                <tr>
                     <td >{v.id}</td>
                     <td ><Link to={`/pharmacy/drugs/${v.id}/${v.name}`}>{v.name}</Link></td>
                     <td >{v.address}</td>
                     <td >{v.phone_no}</td>
-                    <td><Link to={`/pharmacy/update/${v.id}`}>Update</Link>
-                    ||<Link to={`/pharmacy/delete/${v.id}`}>Delete</Link></td> 
+                    <td><Link className='btn btn-primary' to={`/pharmacy/update/${v.id}`}>Update</Link>
+                    <Link className='btn btn-danger' to={`/pharmacy/delete/${v.id}`}>Delete</Link></td> 
                 </tr>
-
+            </tbody>
                     ))}
-                    </tbody>
-            </table> 
-            { 
-                cl &&
-                <nav className='d-flex justify-content-center'>
+                    
+            </table>  
+          
+            <nav className='d-flex justify-content-center'>
                 <ul className='pagination'>
                     {
                         pages.map((page)=>(
@@ -72,7 +72,7 @@ const ViewPharmacy=()=>{
                     }
                 </ul>
             </nav>
-            }
+            
         </div>
     )
 }

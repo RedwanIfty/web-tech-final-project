@@ -17,15 +17,19 @@ import ViewPharmacy from './ViewPharmacy';
 import ViewUser from './ViewUser';
 import Login from './Login';
 import PharmacyDrugs from './PharmacyDrugs';
-// import Test from './Test';
+import EmployeeDash from './EmployeeDash';
+import UserDetails from './UserDetails';
+import Changepass from './ChangePass';
+import ForgetPass from './ForgetPass';
+
 const Main = ()=>{
     return (
         <div>
              <BrowserRouter>
                {/* <LeftMenu/> */}
                {localStorage.getItem("_authToken")!=null && <LeftMenu/>}
-               {localStorage.getItem('_authToken')===null && <HomeMenu/>}
-                
+               {(localStorage.getItem('_authToken')===null && localStorage.getItem('user')===null ) && <HomeMenu/>}
+               {/* { localStorage.getItem('user')===null && <EmployeeLoginMenu/>} */}
                 <Routes>
                     <Route path="/register" element={<Register/>} />
                     <Route path="/drugs" element={<Drugs/>} />
@@ -33,6 +37,7 @@ const Main = ()=>{
                     <Route path="/view/user" element={<ViewUser/>}/>
                     <Route path='/user/update/:id/:name' element={<UserUpdate/>}/>
                     <Route path='/user/delete/:id' element={<UserDelete/>}/>
+                    <Route path='/user/details/:id' element={<UserDetails/>}/>
                     <Route path="/view/pharmacy" element={<ViewPharmacy/>}/>
                     <Route path='/pharmacy/delete/:id' element={<PharmacyDelete/>}/>
                     <Route path='/pharmacy/update/:id' element={<PharmacyUpdate/>}/>
@@ -40,8 +45,11 @@ const Main = ()=>{
                     <Route path='/drugs/delete/:id' element={<DrugsDelete/>}/>
                     <Route path='/drugs/update/:id/:name' element={<DrugsUpdate/>}/>
                     <Route path='/pharmacy/drugs/:id/:name' element={<PharmacyDrugs/>}/>
+                    <Route path='/employee/:id' element={<EmployeeDash/>}/>
                     <Route path='/logout' element={<Logout/>}/>
                     <Route path='/login' element={<Login/>}/>
+                    <Route path='/changepass' element={<Changepass/>}/>
+                    <Route path='/forgetpass' element={<ForgetPass/>}/>
                 </Routes>
             </BrowserRouter> 
             

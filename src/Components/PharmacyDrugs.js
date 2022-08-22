@@ -36,6 +36,7 @@ const PharmacyDrugs=()=>{
            // debugger;
             setErrs(err.response.data);
         })
+        
     }
     return(
     <div>
@@ -52,7 +53,7 @@ const PharmacyDrugs=()=>{
         <span>{errs.available? errs.available[0]:''}</span> 
         <br></br>
         <h5>{msg}</h5>
-    <ul>
+   
         {
             check===true  ?
             <table className='table table-striped'>
@@ -79,7 +80,7 @@ const PharmacyDrugs=()=>{
              )
             }</table>:"No drugs available"
         }
-    </ul>
+   
     </div>
     )
 }

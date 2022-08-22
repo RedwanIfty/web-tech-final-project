@@ -26,7 +26,7 @@ const Register=()=>{
     // },[]);
     const upload=(event)=>{
         event.preventDefault();
-        var data=new FormData();
+        var data=new FormData();//{}
         data.append("name",name);
         data.append("email",email);
         data.append("password",password);
@@ -58,7 +58,8 @@ const Register=()=>{
                 Type: 
                 Patient<input type="radio" value="Patient" name={type} onChange={e=>setType(e.target.value)}/>
                 Doctor<input type="radio" value="Doctor" name={type} onChange={e=>setType(e.target.value)}/>
-                Employee<input type="radio" value="Employee" name={type} onChange={e=>setType(e.target.value)}/> <span className={errs.type && "alert alert-danger"} role="alert">{errs.type? errs.type[0]:''}</span>
+                Employee<input type="radio" value="Employee" name={type} onChange={e=>setType(e.target.value)}/> 
+                Customer<input type="radio" value="Customer" name={type} onChange={e=>setType(e.target.value)}/> <span className={errs.type && "alert alert-danger"} role="alert">{errs.type? errs.type[0]:''}</span>
                 <br/><br></br>
                 <input className={'btn btn-success'} type="submit" value="Register"/><br></br>
                 
@@ -66,9 +67,9 @@ const Register=()=>{
         </form>
         {/* <select>
         {view.map(v=>(
-                <option value={v.name}>{v.name}</option>            ))}
+                <option value={v.name}>{v.name}</option>            ))}msg
         </select> */}
-        <h4>{msg}</h4>
+        <span className={msg && "alert alert-success"}>{msg}</span>
         {name}
     </div>
     )

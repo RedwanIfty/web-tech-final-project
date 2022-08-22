@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import { Link } from 'react-router-dom';
 import axiosConfig from './axiosConfig';
 const Login =()=>{
     const[email,setEmail] = useState("");
@@ -16,7 +17,12 @@ const Login =()=>{
                     window.location.href="/view/user";
                 }
                 if(succ.data.Role==='Employee')
-                    {alert('user cannot access')}
+                    {
+                        localStorage.setItem('user',succ.data.tkey);
+                        localStorage.setItem('user_id',succ.data.user_id);
+                        var id=succ.data.user_id;
+                        window.location.href=`/employee/${id}`
+                    }
                 
             },
             (err)=>{
@@ -28,12 +34,20 @@ const Login =()=>{
     }
     return (
         <div>
+            <div><h1 className='d-flex justify-content-center'>Login</h1></div>
+        <div className='d-flex justify-content-center'>
             <form onSubmit={handleForm}>
-                Email:<input value={email} onChange={(e)=>{setEmail(e.target.value)}} type="text"/><br/><spna>{errs.email ? errs.email[0] : " "}</spna><br/>
-                Password: <input value={pass} onChange={(e)=>{setPass(e.target.value)}} type="password"/> <br/><spna>{errs.pass ? errs.pass[0] : " "}</spna><br/>
-                <input type="submit" value="login"/>
+                <br/>
+                Email:<input value={email} onChange={(e)=>{setEmail(e.target.value)}} type="text"/><span className={errs.email && 'alert alert-danger'}>{errs.email ? errs.email[0] : " "}</span><br/><br/>
+                Password: <input value={pass} onChange={(e)=>{setPass(e.target.value)}} type="password"/><span className={errs.pass && 'alert alert-danger'}>{errs.pass ? errs.pass[0] : " "}</span><br/><br/>
+                <input className='btn btn-success' type="submit" value="login"/>
             </form>
-            <spna>{errs.msg ? errs.msg:" "}</spna>
+            <span>{errs.msg ? errs.msg:" "}</span>
+        </div>
+        <div className='d-flex justify-content-center'>
+                <b style={{color:'red'}}>Forget Password?</b>
+                <Link to='/forgetpass'>Click Here</Link>
+            </div>
         </div>
     )
 }
