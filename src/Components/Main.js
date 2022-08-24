@@ -23,6 +23,8 @@ import Changepass from './ChangePass';
 import ForgetPass from './ForgetPass';
 import ChangeProfilePic from './ChangeProfilePic';
 import Footer from './Footer';
+import ViewSells from './ViewSells';
+import DrugsPharmacy from './DrugsPharmacy';
 
 const Main = ()=>{
     return (
@@ -32,6 +34,7 @@ const Main = ()=>{
                {localStorage.getItem("_authToken")!=null && <LeftMenu/>}
                {(localStorage.getItem('_authToken')===null && localStorage.getItem('user')===null ) && <HomeMenu/>}
                {/* { localStorage.getItem('user')===null && <EmployeeLoginMenu/>} */}
+                <Footer/>
                 <Routes>
                     <Route path="/register" element={<Register/>} />
                     <Route path="/drugs" element={<Drugs/>} />
@@ -47,14 +50,16 @@ const Main = ()=>{
                     <Route path='/drugs/delete/:id' element={<DrugsDelete/>}/>
                     <Route path='/drugs/update/:id/:name' element={<DrugsUpdate/>}/>
                     <Route path='/pharmacy/drugs/:id/:name' element={<PharmacyDrugs/>}/>
-                    <Route path='/employee/:id' element={<EmployeeDash/>}/>
+                    <Route path='/drugs/pharmacy/:id/' element={<DrugsPharmacy/>}/>
+                    <Route path='/employee' element={<EmployeeDash/>}/>
                     <Route path='/logout' element={<Logout/>}/>
                     <Route path='/login' element={<Login/>}/>
                     <Route path='/changepass' element={<Changepass/>}/>
+                    <Route path='/drugs/sells' element={<ViewSells/>}/>
                     <Route path='/forgetpass' element={<ForgetPass/>}/>
                     <Route path='/changeProfilePic/:id' element={<ChangeProfilePic/>}/>
                 </Routes>
-                <Footer/>
+                
             </BrowserRouter> 
             
             

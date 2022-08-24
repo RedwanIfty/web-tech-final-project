@@ -11,7 +11,7 @@ const ViewDrugs=()=>
     const[view,setView]=useState([]);
     const[cl,setCl]=useState(false);
     const[data,setData]=useState([]);
-   
+    const[msg,setMsg]=useState("");
     var total=0;
     useEffect(()=>{
         axiosConfig.get("drugs").then((rsp)=>{
@@ -25,7 +25,7 @@ const ViewDrugs=()=>
     },[]); 
     const { onDownload } = useDownloadExcel({
         currentTableRef: tableRef.current,
-        filename: 'Users table',
+        filename: 'Drugs table',
         sheet: 'Users'
     })
     const search=(key)=>{
@@ -51,10 +51,23 @@ const ViewDrugs=()=>
         })
         }
     }
+    const deleteDrugs=(event,id)=>{
+        event.preventDefault();
 
+        const thisClick=event.currentTarget;
+
+        axiosConfig.post("drugs/delete/"+id).then((rsp)=>{
+            setMsg(rsp.data.msg)
+            thisClick.closest("tr").remove();
+        },(err)=>{})
+    }
     return(
         <div>
             <button className='btn btn-primary' style={{float:'right'}} onClick={onDownload}> Export excel </button>
+            <div className='d-flex justify-content-center'>
+                <p className={msg?'alert alert-danger':''}>{msg}</p>
+            </div>
+            <br></br>
             <div className="form-group">
                 <input type="text" placeholder='Search drugs by name' className="form-control" onChange={(e)=>search(e.target.value)}/><br/><br/> 
             </div>
@@ -78,13 +91,13 @@ const ViewDrugs=()=>
                 <tr key={index++}>
                     <td>{index}</td>
                     <td >{v.id}</td>
-                    <td >{v.name}</td>
+                    <td ><Link to={`/drugs/pharmacy/${v.id}`}>{v.name}</Link></td>
                     <td >{v.formula}</td>
                     <td >{v.price}</td>
                     <td >{v.available}</td>
                     <td>{v.price*v.available}</td>
                     <td><Link className='btn btn-primary' to={`/drugs/update/${v.id}/${v.name}` }>Update</Link>
-                    <Link className='btn btn-danger' to={`/drugs/delete/${v.id}`}>Delete</Link></td>
+                    <button type='button' onClick={(e)=>deleteDrugs(e,v.id)} className='btn btn-danger'>Delete</button></td>
                 </tr>
                     ))}
                     <tr>
@@ -117,13 +130,13 @@ const ViewDrugs=()=>
                 <tr key={index++}>
                     <td>{index}</td>
                     <td >{v.id}</td>
-                    <td >{v.name}</td>
+                    <td ><Link to={`/drugs/pharmacy/${v.id}`}>{v.name}</Link></td>
                     <td >{v.formula}</td>
                     <td >{v.price}</td>
                     <td >{v.available}</td>
                     <td>{v.price*v.available}</td>
                     <td><Link className='btn btn-primary' to={`/drugs/update/${v.id}/${v.name}` }>Update</Link>
-                    <Link className='btn btn-danger' to={`/drugs/delete/${v.id}`}>Delete</Link></td>
+                    <button type='button' onClick={(e)=>deleteDrugs(e,v.id)} className='btn btn-danger'>Delete</button></td>
                 </tr>
                     ))}
                     <tr>

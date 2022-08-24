@@ -11,13 +11,15 @@ const ViewUser=()=>{
     const[view,setView]=useState([]);
     const[paginateView,setpaginateView]=useState();
     const[currentPage,setcurrentPage]=useState(1);
-    
     const[data,setData]=useState([]);
     const[cl,setCl]=useState(false);
+    const[msg,setMsg]=useState("");
     useEffect(()=>{
         axiosConfig.get("user").then((rsp)=>{
             setCl(true);
         setView(rsp.data);
+        debugger
+        //setMsg(rsp.data.msg);
         setpaginateView(_(rsp.data).slice(0).take(pageSize).value());
         console.log(rsp.data);
         },(er)=>{
@@ -53,14 +55,23 @@ const ViewUser=()=>{
         })
         }
     }
+    const deleteUser=(event,id)=>{
+        event.preventDefault();
+
+        const thisClick=event.currentTarget;
+
+        axiosConfig.post("user/delete/"+id).then((rsp)=>{
+            setMsg(rsp.data.msg)
+            thisClick.closest("tr").remove();
+        },(err)=>{})
+    }
     return(
 
         <div className='container'>
-        <select style={{float:'right'}}>
-            <option value="actual value 1">Display Text 1</option>
-            <option value="actual value 2">Display Text 2</option>
-            <option value="actual value 3">Display Text 3</option>
-        </select>
+
+            <div className='d-flex justify-content-center'>
+                <p className={msg?'alert alert-success':''}>{msg}</p>
+            </div>
             <br></br>
             <h4>User List</h4><br></br>
             <div className="form-group">
@@ -87,7 +98,7 @@ const ViewUser=()=>{
                     <td><img src={`http://localhost:8000/storage/pro_pics/${v.pro_pic}`} className='img-fluid rounded-circle' width={100} height={100} alt='img not found'/></td>
                     <td >{
                         type===v.type ? " ":<Link className='btn btn-primary' to={`/user/update/${v.id}/${v.name}`}>Update</Link>}
-                        {type===v.type ? " ":<Link className='btn btn-danger' to={`/user/delete/${v.id}`}>Delete</Link>}
+                        {type===v.type ? " ":<button type='button' onClick={(e)=>deleteUser(e,v.id)} className='btn btn-danger'>Delete</button>}
                     </td>
                 </tr>
             </tbody>

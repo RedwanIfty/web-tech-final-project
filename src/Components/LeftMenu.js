@@ -25,6 +25,9 @@ const LeftMenu=()=>{
                 </li>
                 <li className='MenuItem'>
                     <MenuItem url="/changepass" value="Change Password"/>    
+                </li>
+                <li className='MenuItem'>
+                    <MenuItem url="/drugs/sells" value="View Sells"/>    
                 </li>    
                 <li className='MenuItem'>
                     <MenuItem url={`changeProfilePic/${id}`} value="Change Picture"/>    
