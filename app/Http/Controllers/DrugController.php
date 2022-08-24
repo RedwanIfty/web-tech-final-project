@@ -63,7 +63,7 @@ class DrugController extends Controller
         $drugs->update();
         return response()->json(
             [
-                "msg"=>"Drugs delete successfully",
+                "msg"=>"$drugs->name delete successfully",
                 "data"=>$drugs
             ]);
     }

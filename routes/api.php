@@ -7,6 +7,7 @@ use App\Http\Controllers\PharmacyController;
 use App\Http\Controllers\DrugController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PharmacyDrugsController;
+use App\Http\Controllers\SellController;
 use App\Http\Controllers\EmployeeController;
 /*
 |--------------------------------------------------------------------------
@@ -30,12 +31,13 @@ Route::get('user-search/{key}',[UserController::class,'usersearch'])->middleware
 Route::get('user/details/{id}',[UserController::class,'userDetails'])->middleware('loggedadmin');
 Route::post('/changepass',[UserController::class,'changepass'])->middleware('loggedadmin');
 Route::post('/forgetpass',[UserController::class,'forgetpass']);
-Route::post('/changeProfilePic/{id}',[UserController::class,'changeProfilePic'])->middleware('loggedadmin');
+Route::post('/changeProfilePic/{id}',[UserController::class,'changeProfilePic']);//->middleware('loggedadmin');
 
 Route::get('pharmacy',[PharmacyController::class,'getPharmacy'])->middleware('loggedadmin');
 Route::post('add/pharmacy',[PharmacyController::class,'addPharmacy'])->middleware('loggedadmin');
 Route::post('pharmacy/update/{id}',[PharmacyController::class,'updatePharmacy'])->middleware('loggedadmin');
 Route::post('pharmacy/delete/{id}',[PharmacyController::class,'deletePharmacy'])->middleware('loggedadmin');
+Route::get('pharmacy-search/{key}',[PharmacyController::class,'searchPharmacy']);//->middleware('loggedadmin');
 
 Route::get('drugs',[DrugController::class,'getDrugs'])->middleware('loggedadmin');
 Route::post('add/drugs',[DrugController::class,'addDrugs'])->middleware('loggedadmin');
@@ -47,7 +49,10 @@ Route::post('/login',[LoginController::class,'login']);
 Route::post('/logout',[LoginController::class,'logout']);
 
 Route::get('/pharmacy/drugs/{id}',[PharmacyDrugsController::class,'pharmacyDrugs'])->middleware('loggedadmin');
-Route::get('/drugs/pharmacy/{id}',[PharmacyDrugsController::class,'drugsPharmacy']);
+Route::get('/drugs/pharmacy/{id}',[PharmacyDrugsController::class,'drugsPharmacy'])->middleware('loggedadmin');
 Route::post('/pharmacy/drugs/{id}',[PharmacyDrugsController::class,'pharmacyDrugsAdd'])->middleware('loggedadmin');
-
+Route::post('/drugs/pharmacy/{id}',[PharmacyDrugsController::class,'drugsPharmacyAdd']);
 Route::get('/employee/{id}',[EmployeeController::class,'employee'])->middleware('loggedemployee');
+
+
+Route::get('/drugs/sells',[SellController::class,'getSells']);//->middleware('loggedadmin');

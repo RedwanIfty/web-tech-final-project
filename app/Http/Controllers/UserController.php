@@ -95,7 +95,7 @@ class UserController extends Controller
         $user->update();
         return response()->json(
             [
-                "msg"=>"Delete Successfull"
+                "msg"=>"Delete $user->name Successfully "
             ]
             );
     }
@@ -161,7 +161,7 @@ class UserController extends Controller
     }
     function changeProfilePic(Request $req,$id){
         $validator = Validator::make($req->all(),[
-                        "file"=>"required|mimes:jpg,png,jpeg|max:2048"
+            "file"=>"required|mimes:jpg,png,jpeg|max:2048"
         ]
          );
         if($validator->fails()){

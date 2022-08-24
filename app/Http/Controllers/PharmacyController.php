@@ -62,4 +62,9 @@ class PharmacyController extends Controller
                 "data"=>$pharmacy
             ]);
     }
+    function searchPharmacy($key){
+        $pharmacy=Pharmacy::where('name','LIKE','%'.$key.'%')
+                    ->whereNull('status')->get();
+        return response()->json($pharmacy);
+    }
 }

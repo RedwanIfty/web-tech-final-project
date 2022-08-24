@@ -44,7 +44,7 @@ class PharmacyDrugsController extends Controller
        // $pd=new PharmacyDrugs();
        $drugadd=Drug::where('name',$req->name)->first();
        $drugadd->available;
-       if($drugadd->available<=$req->available){
+       if($drugadd->available<$req->available){
         return response()->json([
             "msg"=>"$req->available drugs not available",
            ]);
@@ -56,6 +56,38 @@ class PharmacyDrugsController extends Controller
        $pharmacydrugs->save();
        return response()->json([
         "msg"=>"Drugs add successfully",
+        "data"=>$pharmacydrugs
+    ]);
+    }
+    function drugsPharmacyAdd(Request $req,$id){
+        $validator = Validator::make($req->all(),[
+            "name"=>"required",
+            "address"=>"required",
+            "phone_no"=>"required|regex:/^(^\+?(88)?0?1[3456789][0-9]{8})+$/i"
+        ],
+        [
+            "name.required"=>"Please provide Pharmacy name",
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors(),422);
+        }
+        $p=Pharmacy::where('name',$req->name)->first();
+        if($p===null){
+            $pharmacy=new Pharmacy();
+            $pharmacy->name=$req->name;
+            $pharmacy->address=$req->address;
+            $pharmacy->phone_no=$req->phone_no;
+            $pharmacy->save();
+    }
+        //return response()->json($d->id);
+       // $pd=new PharmacyDrugs();
+       $pharmacyadd=Pharmacy::where('name',$req->name)->first();
+       $pharmacydrugs=new PharmacyDrugs();
+       $pharmacydrugs->drug_id=$id;
+       $pharmacydrugs->pharmacy_id=$pharmacyadd->id;
+       $pharmacydrugs->save();
+       return response()->json([
+        "msg"=>"Pharmacy add successfully",
         "data"=>$pharmacydrugs
     ]);
     }

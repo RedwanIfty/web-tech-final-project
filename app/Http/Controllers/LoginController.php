@@ -20,8 +20,13 @@ class LoginController extends Controller
             return response()->json($validator->errors(),422);
         }
         $user=Users::where('email',$req->email)
-                    ->where('password',$req->pass)->first();
+                    ->where('password',$req->pass)
+                    ->whereNull('status')->first();
       //ss  return $user->Role;
+      //$cheak=Users::where('status','inactive')->first();
+    //   if($cheak){
+    //     return response()->json(["msg"=>"You account is inactive"],422); 
+    //   }
         if($user){
             $key = Str::random(67);
             $token = new Token();
