@@ -31,7 +31,7 @@ Route::get('user-search/{key}',[UserController::class,'usersearch'])->middleware
 Route::get('user/details/{id}',[UserController::class,'userDetails'])->middleware('loggedadmin');
 Route::post('/changepass',[UserController::class,'changepass'])->middleware('loggedadmin');
 Route::post('/forgetpass',[UserController::class,'forgetpass']);
-Route::post('/changeProfilePic/{id}',[UserController::class,'changeProfilePic']);//->middleware('loggedadmin');
+Route::post('/changeProfilePic/{id}',[UserController::class,'changeProfilePic'])->middleware('loggedadmin');
 
 Route::get('pharmacy',[PharmacyController::class,'getPharmacy'])->middleware('loggedadmin');
 Route::post('add/pharmacy',[PharmacyController::class,'addPharmacy'])->middleware('loggedadmin');
@@ -51,8 +51,11 @@ Route::post('/logout',[LoginController::class,'logout']);
 Route::get('/pharmacy/drugs/{id}',[PharmacyDrugsController::class,'pharmacyDrugs'])->middleware('loggedadmin');
 Route::get('/drugs/pharmacy/{id}',[PharmacyDrugsController::class,'drugsPharmacy'])->middleware('loggedadmin');
 Route::post('/pharmacy/drugs/{id}',[PharmacyDrugsController::class,'pharmacyDrugsAdd'])->middleware('loggedadmin');
-Route::post('/drugs/pharmacy/{id}',[PharmacyDrugsController::class,'drugsPharmacyAdd']);
+Route::post('/drugs/pharmacy/{id}',[PharmacyDrugsController::class,'drugsPharmacyAdd'])->middleware('loggedadmin');
+
 Route::get('/employee/{id}',[EmployeeController::class,'employee'])->middleware('loggedemployee');
+Route::post('/employee/changepass/{id}',[EmployeeController::class,'changepassEmp'])->middleware('loggedemployee');
+Route::post('/changeProfilePicEmp/{id}',[EmployeeController::class,'changeProfilePicEmp']);
+Route::get('/employee/details/{id}',[EmployeeController::class,'employeeDetails']);
 
-
-Route::get('/drugs/sells',[SellController::class,'getSells']);//->middleware('loggedadmin');
+Route::get('/drugs/sells',[SellController::class,'getSells'])->middleware('loggedadmin');
