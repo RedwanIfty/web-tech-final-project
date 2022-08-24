@@ -1,6 +1,7 @@
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import {useState} from 'react';
 import axiosConfig from './axiosConfig';
+import EmployeeNav from "./EmployeeNav";
 
 const Register=()=>{
     const[name,setName]=useState("");
@@ -47,6 +48,7 @@ const Register=()=>{
     }
     return(
     <div>
+        {localStorage.getItem('user')!=null &&<EmployeeNav/>}
         <h1 style={PostStyle}>Register</h1>
         <form onSubmit={upload}>
             <fieldset>

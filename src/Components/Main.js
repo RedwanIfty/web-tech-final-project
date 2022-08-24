@@ -25,6 +25,8 @@ import ChangeProfilePic from './ChangeProfilePic';
 import Footer from './Footer';
 import ViewSells from './ViewSells';
 import DrugsPharmacy from './DrugsPharmacy';
+import ChangePassEmp from './ChangePassEmp';
+import ChangeProfilePicEmp from './ChangeProfilePicEmp';
 
 const Main = ()=>{
     return (
@@ -58,6 +60,8 @@ const Main = ()=>{
                     <Route path='/drugs/sells' element={<ViewSells/>}/>
                     <Route path='/forgetpass' element={<ForgetPass/>}/>
                     <Route path='/changeProfilePic/:id' element={<ChangeProfilePic/>}/>
+                    <Route path='/employee/changepass' element={<ChangePassEmp/>}/>
+                    <Route path='/employee/changeProfilePic' element={<ChangeProfilePicEmp/>}/>
                 </Routes>
                 
             </BrowserRouter> 
